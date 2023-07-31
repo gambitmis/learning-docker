@@ -1,0 +1,21 @@
+version: '3'
+services:
+  haproxy:
+    image: haproxy
+    restart: unless-stopped
+    volumes:
+    - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
+    sysctls:
+    - net.ipv4.ip_unprivileged_port_start=0
+    expose: 
+    - 8070
+    networks:
+    - haproxy
+    #command: ["/bin/sh"]
+    #tty: true
+    #stdin_open: true
+
+networks:
+    haproxy:
+        external: true
+    
