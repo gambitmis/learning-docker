@@ -7,13 +7,46 @@ services:
     - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
     sysctls:
     - net.ipv4.ip_unprivileged_port_start=0
-    expose: 
-    - 8070
+    ports: 
+    - 8070:8070
+    - 8077:8077
     networks:
     - haproxy
     #command: ["/bin/sh"]
     #tty: true
     #stdin_open: true
+    
+  web1:
+    image: pokemon1:v1
+    restart: unless-stopped
+    networks:
+    - haproxy
+    ports:
+    - 8071:80
+
+  web2:
+    image: pokemon2:v1
+    restart: unless-stopped
+    networks:
+    - haproxy
+    ports:
+    - 8072:80
+
+  web3:
+    image: pokemon3:v1
+    restart: unless-stopped
+    networks:
+    - haproxy
+    ports:
+    - 8073:80
+
+  web4:
+    image: pokemon4:v1
+    restart: unless-stopped
+    networks:
+    - haproxy
+    ports:
+    - 8074:80
 
 networks:
     haproxy:

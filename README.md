@@ -285,3 +285,32 @@ docker compose logs
 docker compose logs wordpress
 docker compose logs db
 ```
+# https://www.linuxtechi.com/install-kubernetes-on-ubuntu-22-04/
+
+```sh
+docker volume create portainer_data
+docker run -d -p 8000:8000 -p 9443:9443 --name portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ee:latest
+```
+```sh
+version: '3.8'
+
+volumes:
+  portainer_data:
+
+networks:
+  mgt:
+    external: yes
+
+services:
+  portainer-ce:
+    image: portainer/portainer-ce:latest
+    restart: unless-stopped
+    ports:
+      - 8000:8000
+      - 9443:9443
+    networks:
+      - mgt
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
+```
