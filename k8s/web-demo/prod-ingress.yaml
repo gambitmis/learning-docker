@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-webdemo
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: gdcc-webdemo.dg-paas.cloud
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: svc-webdemo
+            port:
+              number: 80

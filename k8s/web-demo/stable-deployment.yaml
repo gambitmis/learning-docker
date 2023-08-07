@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: stable
+  name: stable
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: canary
+      type: "1"
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: canary
+        type: "1"
+    spec:
+      containers:
+      - image: gambitmis/web-demo:t1v1
+        name: web-demo
+        ports:
+        - containerPort: 80
+        resources: {}
+status: {}
