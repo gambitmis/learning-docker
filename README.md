@@ -1317,8 +1317,6 @@ wordpress-db-1  | Version: '5.7.42'  socket: '/var/run/mysqld/mysqld.sock'  port
 </p></details><br>
 
 
-# https://www.linuxtechi.com/install-kubernetes-on-ubuntu-22-04/
-
 ```sh
 docker volume create portainer_data
 docker run -d -p 8000:8000 -p 9443:9443 --name portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ee:latest
