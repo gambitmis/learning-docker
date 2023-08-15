@@ -23,4 +23,8 @@ spec:
         ports:
         - containerPort: 80
         resources: {}
+      initContainers:
+      - image: busybox
+        name: delay
+        command: ['sh', '-c', 'echo The app is running! && sleep 10']
 status: {}

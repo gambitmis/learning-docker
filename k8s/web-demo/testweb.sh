@@ -5,7 +5,7 @@ url="http://gdcc-webdemo.dg-paas.cloud"
 filter_word="<th colspan=\"2\">"
 
 # Set the loop count to 100
-loop_count=10
+loop_count=50
 
 # Loop 'loop_count' times
 for ((i=1; i<=loop_count; i++)); do
