@@ -1,0 +1,18 @@
+FROM python:3.11.4-alpine3.18
+WORKDIR /code
+COPY requirements.txt .
+COPY /code .
+RUN set -eux \
+    apk update; \
+    apk upgrade; \
+    apk add --no-cache bash; \
+    rm /var/cache/apk/* ;\
+    pip install --upgrade pip ; \
+    pip install -r requirements.txt;
+ARG USER_ID=1001
+ARG GROUP_ID=1001
+ARG USR=tuxtum
+RUN addgroup -g $GROUP_ID $USR && adduser -g '' -s /bin/sh -G $USR -D -u $USER_ID $USR
+USER $USR
+EXPOSE 8077
+CMD ["gunicorn", "-b", "0.0.0.0:8077", "app:app"]

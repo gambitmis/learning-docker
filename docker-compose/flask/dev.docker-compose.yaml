@@ -1,0 +1,20 @@
+version: '3'
+services:
+  python:
+    image: flask/demo-app:dev
+    build:
+      context: .
+      dockerfile: dockerfile.dev
+    restart: unless-stopped
+    stdin_open: true
+    tty: true
+    command: ["/bin/sh"]
+    volumes:
+    - ./code:/code
+    ports:
+    - 8077:8077
+
+networks:
+    default:
+        name: demo
+        external: true
